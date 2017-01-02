@@ -6,8 +6,13 @@ if (!$db) {
 	die ('Can\'t use foo : ' . mysql_error());
 }
 
+/*
 $result = mysql_query('SELECT * FROM produto', $conecta);
 
-echo $result; 
+while ($row = mysql_fetch_assoc($result)) {
+	echo $row['nome'];
+}
+*/
+
 
 ?>
