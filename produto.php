@@ -16,6 +16,28 @@ $produtos = $produtoCrud->select("*");
     </head>
     <body>	
 
+        
+        $con = new conexao();
+        $con->conecta();
+        $crud = new crud('produto');
+        
+        if(isset($_POST['nomeInsercao']) && isset($_POST['descricaoInsercao']) && isset($_POST['precoInsercao'])){
+            echo'tem coisa';
+            $valores = [];
+            array_push($valores, $_POST['nomeInsercao']);
+            array_push($valores, $_POST['descricaoInsercao']);
+            array_push($valores, $_POST['precoInsercao']);
+            echo '<prep>';
+            echo $valores;
+            echo '</prep>';
+            exit();
+            if($crud->inserir('nome, descricao, preco', $valores)){
+                echo "<script>alert('Inserido com sucesso!');</script>";                
+            }
+        }
+                
+	$produtos = $crud->seleciona("*");
+        
         <h1>Lista de produtos</h1>
         <!--tabela de produtos cadatrados-->
         <div class="container">
@@ -57,20 +79,19 @@ $produtos = $produtoCrud->select("*");
 
         <!--formulario de cadastro do produto-->
         <div class="modal fade" id="modalCadastro" style="display: none">
-            <form>
+            <form method="POST">
                 <label>Nome:</label>
-                <input type="text" name="nomeCadastro">
+                <input type="text" name="nomeInsercao">
                 <label>Descrição:</label>
-                <input type="text" name="descricaoCadastro">
-                <label>Preço:</label>
-                <input type="number" name="precoCadastro" step="0.1">
+                <input type="text" name="descricaoInsercao">
+                <label>Preço: </label>
+                <input type="number" name="precoInsercao" step="0.1">                            
                 <input type="submit" name="cadastrarProduto">
             </form>
         </div>
 
         <!--formulario de edição de produto-->
         <div class="modal fade" id="modalEdicao" style="display: none">
-
             <form>
                 <label>Nome:</label>
                 <input type="text" name="nomeEdicao">
