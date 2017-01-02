@@ -2,39 +2,46 @@
 
 class crud {
 
-    protected $tabela = "";
+	protected $tabela = "";
 
-    public function __construct($tabela) {
-        $database = new db();
-        $database->conectar();
-        $this->tabela = $tabela;
-        return $this->tabela;
-    }
+	public function __construct($tabela) {
+		$database = new db();
+		$database->conectar();
+		$this->tabela = $tabela;
+		return $this->tabela;
+	}
 
-    function select($campos) {
-        $query = "SELECT " . $campos . " FROM " . $this->tabela;
+	function select($campos) {
+		$query = "SELECT " . $campos . " FROM " . $this->tabela;
 
-        $result = mysql_query($query);
+		$result = mysql_query($query);
 
-        $resultado = [];
+		$resultado = [];
 
-        while ($row = mysql_fetch_assoc($result)) {
-            array_push($resultado, $row);
-        }
-        return $resultado;
-    }
+		while ($row = mysql_fetch_assoc($result)) {
+			array_push($resultado, $row);
+		}
+		return $resultado;
+		return true;
+	}
 
-    function insert() {
-        
-    }
+	function insert($campos, $valores) {
+		$valores = implode("','", $valores);
+		$query = "INSERT INTO " . $this->tabela . " (" . $campos . ") " . "VALUES ('" . $valores . "')";                
+		if (mysql_query($query)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    function update() {
-        
-    }
+	function update() {
+		
+	}
 
-    function delete() {
-        
-    }
+	function delete() {
+		
+	}
 
 }
 

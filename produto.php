@@ -15,29 +15,18 @@ $produtos = $produtoCrud->select("*");
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>	
-
-        
-        $con = new conexao();
-        $con->conecta();
-        $crud = new crud('produto');
-        
-        if(isset($_POST['nomeInsercao']) && isset($_POST['descricaoInsercao']) && isset($_POST['precoInsercao'])){
-            echo'tem coisa';
+        <?php
+        if (isset($_POST['nomeInsercao']) && isset($_POST['descricaoInsercao']) && isset($_POST['precoInsercao'])) {
             $valores = [];
             array_push($valores, $_POST['nomeInsercao']);
             array_push($valores, $_POST['descricaoInsercao']);
             array_push($valores, $_POST['precoInsercao']);
-            echo '<prep>';
-            echo $valores;
-            echo '</prep>';
-            exit();
-            if($crud->inserir('nome, descricao, preco', $valores)){
-                echo "<script>alert('Inserido com sucesso!');</script>";                
+
+            if ($produtoCrud->insert('nome, descricao, preco', $valores)) {
+                echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=produto.php'>";
             }
         }
-                
-	$produtos = $crud->seleciona("*");
-        
+        ?>
         <h1>Lista de produtos</h1>
         <!--tabela de produtos cadatrados-->
         <div class="container">
