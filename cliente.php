@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+include '/core/db.php';
+include '/core/crud.php';
+$clienteCrud = new crud("cliente");
+$clientes = $clienteCrud->select("*");
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,12 +14,7 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
-        <?php
-        include '/core/db.php';
-        include '/core/crud.php';
-        $clienteCrud = new crud("cliente");
-        $clientes = $clienteCrud->select("*");
-        ?>
+
 
         <h1>Lista de clientes</h1>
         <!--tabela de produtos cadatrados-->

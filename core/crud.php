@@ -1,7 +1,6 @@
 <?php
 
 class crud {
-
 	protected $tabela = "";
 
 	public function __construct($tabela) {
@@ -11,18 +10,20 @@ class crud {
 		return $this->tabela;
 	}
 
-	function select($campos) {
-		$query = "SELECT " . $campos . " FROM " . $this->tabela;
-
+	function select($campos, $where = NULL) {
+		if($where){
+			$query = "SELECT " . $campos . " FROM " . $this->tabela." WHERE ".$where;
+		}else{
+			$query = "SELECT " . $campos . " FROM " . $this->tabela;
+		}    
+		
 		$result = mysql_query($query);
-
 		$resultado = [];
 
 		while ($row = mysql_fetch_assoc($result)) {
 			array_push($resultado, $row);
 		}
 		return $resultado;
-		return true;
 	}
 
 	function insert($campos, $valores) {
@@ -35,14 +36,30 @@ class crud {
 		}
 	}
 
-	function update() {
-		
+	function update($campoValores, $where) {
+		if($where){
+			$query = "UPDATE ".$this->tabela." SET ".$campoValores." WHERE ".$where;
+		}else{
+			$query = "UPDATE ".$this->tabela." SET ".$campoValores;
+		}
+		echo $query;
+		if (mysql_query($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	function delete() {
+	function delete($where) {
+		$query = "DELETE FROM ".$this->tabela." WHERE ".$where;		
+		echo $query;
 		
+		if (mysql_query($query)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
 }
 
 ?>
