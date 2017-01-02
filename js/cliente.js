@@ -24,3 +24,8 @@ $("#editarCliente").click(function(ev){
 	ev.preventDefault();
 	editar();
 });
+
+$("#cadastrarCliente").click(function(ev){
+	ev.preventDefault();
+	cadastrar();
+});
