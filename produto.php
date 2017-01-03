@@ -12,7 +12,9 @@ $produtos = $produtoCrud->select("*");
     <title>Produtos</title>
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    
 </head>
 <body>	
 
@@ -33,16 +35,16 @@ $produtos = $produtoCrud->select("*");
     <h1>Lista de produtos</h1>
     <!--tabela de produtos cadatrados-->
     <div class="container">
-        <button id="novoProduto" class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalCadastro">Cadastrar Produto</button>
+        <button id="novoProduto" class="btn btn-sm btn-primary btn-cadastro" data-toggle="modal"  data-target="#modalCadastro">Cadastrar Produto</button>
         <table class="table table-responsive">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Descrição</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th class="col-md-1">Id</th>
+                    <th class="col-md-3">Nome</th>                    
+                    <th class="col-md-3">Descrição</th>
+                    <th class="col-md-3">Preço</th>
+                    <th class="col-md-1">Editar</th>
+                    <th class="col-md-1">Excluir</th>
                 </tr>
             </thead>
             <!--tr com dados do banco-->
@@ -52,14 +54,14 @@ $produtos = $produtoCrud->select("*");
                     ?>
                     <tr>
                         <td><?= $produto['id']; ?></td>
-                        <td><?= $produto['nome']; ?></td>
-                        <td>R$<?= number_format($produto['preco'], 2, ',',''); ?>  </td>
+                        <td><?= $produto['nome']; ?></td>                        
                         <td><?= $produto['descricao']; ?></td>
+                        <td>R$<?= number_format($produto['preco'], 2, ',',''); ?>  </td>
                         <td>
-                            <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalEdicao">Editar</button>
+                            <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao">Editar</button>
                         </td> 
                         <td>
-                            <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
+                            <button class="btn btn-sm btn-warning" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
                         </td>
                     </tr>
                     <?php } ?>				
@@ -98,7 +100,7 @@ $produtos = $produtoCrud->select("*");
         <div class="modal fade" id="modalExclucao" style="display: none">
             <p>Realmente gostaria de excluir esse item?</p>
             <button>Sim</button>
-            <button>Nao</button>
+            <button>Não</button>
         </div>
 
 
