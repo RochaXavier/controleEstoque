@@ -48,7 +48,7 @@ $clientes = $clienteCrud->select("*");
                                 <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao" >Editar</button>
                             </td> 
                             <td>
-                                <button class="btn btn-sm btn-warning" data-toggle="modal"  data-target="#modalExclucao"  >Excluir</button>
+                                <button class="btn btn-sm btn-warning delete-cliente" id='<?= $cliente['id']; ?>' data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
                             </td>
                         </tr>
                     <?php } ?>				
@@ -123,5 +123,24 @@ $clientes = $clienteCrud->select("*");
                 </div>               
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.delete-cliente').click(function () {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    $('.confirm-delete').click(function () {
+                        $.ajax({
+                            type: "post",
+                            data: {idClie: id},
+                            url: "deleteCliente.php",
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
