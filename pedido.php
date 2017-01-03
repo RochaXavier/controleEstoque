@@ -149,7 +149,6 @@ $clientes = $clienteCrud->select("id,nome");
                                 </option>
                             <?php }
                             ?>
-
                         </select>
                     </div>              
 
