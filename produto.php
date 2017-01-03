@@ -50,7 +50,7 @@ $produtos = $produtoCrud->select("*");
                         <tr>
                             <td><?= $produto['id']; ?></td>
                             <td><?= $produto['nome']; ?></td>
-                            <td><?= $produto['preco']; ?></td>
+                            <td>R$<?= number_format($produto['preco'], 2, ',',''); ?>  </td>
                             <td><?= $produto['descricao']; ?></td>
                             <td>
                                 <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalEdicao">Editar</button>

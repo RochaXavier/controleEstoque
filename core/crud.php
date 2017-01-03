@@ -34,9 +34,19 @@ class crud {
 		return $resultado;
 	}
 
-	function insert($campos, $valores) {
+	function insert($campos, $valores, $where = NULL, $table = NULL) {
+
+		if($table){
+			$this->tabela = $table;
+		}
 		$valores = implode("','", $valores);
-		$query = "INSERT INTO " . $this->tabela . " (" . $campos . ") " . "VALUES ('" . $valores . "')";                
+		
+		if($where){
+			$query = "INSERT INTO " . $this->tabela . " (" . $campos . ") " . "VALUES ('" . $valores . "') WHERE ".$where;        
+		}else{
+			$query = "INSERT INTO " . $this->tabela . " (" . $campos . ") " . "VALUES ('" . $valores . "')";                    
+		}
+		
 		if (mysql_query($query)) {
 			return true;
 		} else {
@@ -44,7 +54,11 @@ class crud {
 		}
 	}
 
-	function update($campoValores, $where) {
+	function update($campoValores, $where = NULL, $table = NULL) {
+
+		if($table){
+			$this->tabela = $table;
+		}
 		if($where){
 			$query = "UPDATE ".$this->tabela." SET ".$campoValores." WHERE ".$where;
 		}else{
@@ -58,7 +72,11 @@ class crud {
 		}
 	}
 
-	function delete($where) {
+	function delete($where, $table = NULL) {
+
+		if($table){
+			$this->tabela = $table;
+		}
 		$query = "DELETE FROM ".$this->tabela." WHERE ".$where;		
 		echo $query;
 		
