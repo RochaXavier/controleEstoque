@@ -75,7 +75,7 @@ $clientes = $clienteCrud->select("id,nome");
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Cadastrar produto</h4>
+                        <h4 class="modal-title">Cadastrar pedido</h4>
                     </div>
                     <div class="modal-body">
                         <select  name="id_cliente" class="form-control">
