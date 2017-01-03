@@ -42,12 +42,10 @@ $clientes = $clienteCrud->select("*");
                             <td><?= $cliente['email']; ?></td>
                             <td><?= $cliente['telefone']; ?></td>
                             <td>
-                                <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalEdicao" onclick="prepararEdicao(
-                                        <?php echo $cliente['id']; ?>)">Editar</button>
+                                <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalEdicao" >Editar</button>
                             </td> 
                             <td>
-                                <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao"  onclick="prepararExclusao(
-                                        <?php echo $cliente['id']; ?>)">Excluir</button>
+                                <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao"  >Excluir</button>
                             </td>
                         </tr>
                     <?php } ?>				

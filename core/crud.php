@@ -10,15 +10,23 @@ class crud {
 		return $this->tabela;
 	}
 
-	function select($campos, $where = NULL) {
+	function select($campos, $where = NULL, $table = NULL) {
+
+		if($table){
+			$this->tabela = $table;
+		}
+
 		if($where){
 			$query = "SELECT " . $campos . " FROM " . $this->tabela." WHERE ".$where;
 		}else{
 			$query = "SELECT " . $campos . " FROM " . $this->tabela;
 		}    
+		//echo $query. "<br>";
 		
 		$result = mysql_query($query);
 		$resultado = [];
+
+
 
 		while ($row = mysql_fetch_assoc($result)) {
 			array_push($resultado, $row);
