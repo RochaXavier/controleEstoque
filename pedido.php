@@ -16,21 +16,22 @@ $clientes = $clienteCrud->select("*");
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
-
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
     <?php include "nav.php" ?>
+    <h1>Lista de pedidos</h1>
 
     <div class="container">
-        <button id="novoPedido" class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalCadastro">Cadastrar novo Pedido</button>
-        <table class="table table-responsive">
+    <button id="novoPedido" class="btn btn-sm btn-primary btn-cadastro " data-toggle="modal"  data-target="#modalCadastro">Cadastrar novo Pedido</button>
+        <table class="table table-responsive table-pedidos">
             <thead>
                 <tr>
-                    <th>Produto</th>
-                    <th>Cliente</th>                        
-                    <th>Editar</th> 
-                    <th>Excluir</th> 
+                    <th class="col-md-4">Produto</th>
+                    <th class="col-md-4">Cliente</th>                        
+                    <th class="col-md-2">Editar</th> 
+                    <th class="col-md-2">Excluir</th> 
                 </tr>
             </thead>
 
@@ -42,10 +43,10 @@ $clientes = $clienteCrud->select("*");
                         <td><?= $pedido['produto']; ?></td>
                         <td><?= $pedido['cliente']; ?></td>                            
                         <td>
-                            <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalEdicao">Editar</button>
+                            <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao">Editar</button>
                         </td> 
                         <td>
-                            <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
+                            <button class="btn btn-sm btn-warning" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
                         </td>
                     </tr>
                     <?php } ?>				
