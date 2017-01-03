@@ -62,8 +62,9 @@ $produtos = $produtoCrud->select("*");
                             <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
                         </td>
                     </tr>
-                    <?php } ?>				
-                </tbody>
+                    <?php
+                } ?>				
+            </tbody>
             </table>
         </div>
 
@@ -97,10 +98,39 @@ $produtos = $produtoCrud->select("*");
 
         <div class="modal fade" id="modalExclucao" style="display: none">
             <p>Realmente gostaria de excluir esse item?</p>
-            <button>Sim</button>
+            <button class="confirm-delete">Sim</button>
             <button>Nao</button>
         </div>
 
+        <script type="text/javascript">
+            var options;
+            $(document).ready(function(){
+                $('.delete-produto').click(function(){
+                    console.log(this.id);
+                    options = {
+                        type: "post",
+                        data: {idProd: $(this).attr('id')},
+                        url: "produto.php"
+                    }                            
+                });
+            });
 
+            $(document).ready(function(){
+               $('.confirm-delete') .click(function (){
+                   $.ajax(options);
+               })
+            });
+
+        </script>
+
+        <?php              
+        if(isset($_POST['idProd'])){
+          if($produtoCrud->excluir("id = ".$_POST['idProd'])){
+             echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=produto.php'>";
+          }
+        }     
+        $con->desconecta();
+        ?>
+        
     </body>
     </html>
