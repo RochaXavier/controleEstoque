@@ -45,8 +45,7 @@ class crud {
 			$query = "INSERT INTO " . $this->tabela . " (" . $campos . ") " . "VALUES ('" . $valores . "') WHERE ".$where;        
 		}else{
 			$query = "INSERT INTO " . $this->tabela . " (" . $campos . ") " . "VALUES ('" . $valores . "')";                    
-		}
-		
+		}		
 		if (mysql_query($query)) {
 			return true;
 		} else {

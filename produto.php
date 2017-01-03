@@ -18,23 +18,6 @@ $produtos = $produtoCrud->select("*");
 
     <?php include "nav.php" ?>
 
-        <?php
-        if (isset($_POST['nomeInsercao']) && isset($_POST['descricaoInsercao']) && isset($_POST['precoInsercao'])) {
-            if ($_POST['nomeInsercao'] && $_POST['descricaoInsercao'] && $_POST['precoInsercao']) {
-                $valores = [];
-                array_push($valores, $_POST['nomeInsercao']);
-                array_push($valores, $_POST['descricaoInsercao']);
-                array_push($valores, $_POST['precoInsercao']);
-                if ($produtoCrud->insert('nome, descricao, preco', $valores)) {
-                    echo "<script>alert('Inserido com sucesso!');</script>";
-                } else {
-                    echo "<script>alert('Erro ao inserir os dados!');</script>";
-                }
-            } else {
-                echo "<script>alert('Informe todos os dados!!');</script>";
-            }        
-    }
-    ?>
     <h1>Lista de produtos</h1>
     <!--tabela de produtos cadatrados-->
     <div class="container">
@@ -77,7 +60,7 @@ $produtos = $produtoCrud->select("*");
     <div class="modal fade" id="modalCadastro">
         <div class="modal-content modal-dialog modal-sm">
 
-            <form class="form"  method="POST">
+            <form class="form"  method="POST" action="cadastroProduto.php">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>

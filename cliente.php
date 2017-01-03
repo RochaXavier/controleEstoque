@@ -18,6 +18,7 @@ $clientes = $clienteCrud->select("*");
     <body>
         <?php include "nav.php" ?>
 
+
         <h1>Lista de clientes</h1>
         <!--tabela de produtos cadatrados-->
         <div class="container">
@@ -58,7 +59,7 @@ $clientes = $clienteCrud->select("*");
         <div class="modal fade" id="modalCadastro">
             <div class="modal-content modal-dialog modal-sm">
 
-                <form class="form"  method="POST">
+                <form class="form" method="POST" action="cadastroCliente.php">
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -66,15 +67,15 @@ $clientes = $clienteCrud->select("*");
                     </div>
                     <div class="modal-body">
                         <label>Nome: </label>
-                        <input type="text" id="nomeCadastro" class="form-control">
+                        <input type="text" name="nomeCadastro" class="form-control">
                         <label>Email: </label>
-                        <input type="email" id="emailCadastro" class="form-control">
+                        <input type="email" name="emailCadastro" class="form-control">
                         <label>Telefone: </label>
-                        <input type="text" id="telefoneCadastro" class="form-control">
+                        <input type="text" name="telefoneCadastro" class="form-control">
                     </div>              
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" name="cadastrarCliente">Cadastrar</button>
+                        <button type="submit" class="btn btn-success" id="cadastrarCliente">Cadastrar</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>  
