@@ -91,8 +91,5 @@ $clientes = $clienteCrud->select("*");
             <button >Sim</button>
             <button>Nao</button>
         </div>
-
-        <script src="js/cliente.js" type="text/javascript"></script>
-
     </body>
     </html>
