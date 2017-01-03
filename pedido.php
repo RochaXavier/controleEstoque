@@ -15,6 +15,8 @@ $clientes = $clienteCrud->select("*");
     <title>Pedidos</title>
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+
 </head>
 
 <body>
@@ -70,17 +72,17 @@ $clientes = $clienteCrud->select("*");
                     <?php foreach ($produtos as $produto) {
                         ?>
                         <option value= <?= $produto["id"]?>>
-                           <?= $produto["nome"]?>
-                       </option>
-                       <?php
-                   } ?>
+                         <?= $produto["nome"]?>
+                     </option>
+                     <?php
+                 } ?>
 
-               </select>
-               <input type="submit" name="cadastrarPedido">
-           </form>
-       </div>
+             </select>
+             <input type="submit" name="cadastrarPedido">
+         </form>
+     </div>
 
-       <div class="modal fade" id="modalEdicao"  style="display: none">
+     <div class="modal fade" id="modalEdicao"  style="display: none">
         <form method="POST">
             <label>Cliente:</label>
             <select  name="id_cliente">
@@ -98,17 +100,17 @@ $clientes = $clienteCrud->select("*");
                 <?php foreach ($produtos as $produto) {
                     ?>
                     <option value= <?= $produto["id"]?>>
-                       <?= $produto["nome"]?>
-                   </option>
-                   <?php
-               } ?>
+                     <?= $produto["nome"]?>
+                 </option>
+                 <?php
+             } ?>
 
-           </select>
-           <input type="submit" name="editarPedido">
-       </form>
-   </div>
+         </select>
+         <input type="submit" name="editarPedido">
+     </form>
+ </div>
 
-   <div class="modal fade" id="modalExclucao" style="display: none">
+ <div class="modal fade" id="modalExclucao" style="display: none">
     <h4>excluir Cliente</h4>
     <p>Realmente gostaria de excluir esse pedido?</p>
     <button >Sim</button>
