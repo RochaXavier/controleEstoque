@@ -6,90 +6,121 @@ $clienteCrud = new crud("cliente");
 $clientes = $clienteCrud->select("*");
 ?>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Clientes</title>
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>Clientes</title>
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
-</head>
-<body>
-    <?php include "nav.php" ?>
+    </head>
+    <body>
+        <?php include "nav.php" ?>
 
-    <h1>Lista de clientes</h1>
-    <!--tabela de produtos cadatrados-->
-    <div class="container">
-    <button id="novoCliente" class="btn btn-sm btn-primary btn-cadastro" data-toggle="modal"  data-target="#modalCadastro">Cadastrar Cliente</button>
-        <table class="table table-responsive">
-            <thead>
-                <tr>
-                    <th class="col-md-1">Id</th>
-                    <th class="col-md-3">Nome</th>
-                    <th class="col-md-3">email</th>
-                    <th class="col-md-3">telefone</th>
-                    <th class="col-md-1">Editar</th>
-                    <th class="col-md-1">Excluir</th>
-                </tr>
-            </thead>
-            <!--tr com dados do banco-->
-            <tbody>
-                <?php
-                foreach ($clientes as $cliente) {
-                    ?>
+        <h1>Lista de clientes</h1>
+        <!--tabela de produtos cadatrados-->
+        <div class="container">
+            <button id="novoCliente" class="btn btn-sm btn-primary btn-cadastro" data-toggle="modal"  data-target="#modalCadastro">Cadastrar Cliente</button>
+            <table class="table table-responsive">
+                <thead>
                     <tr>
-                        <td><?= $cliente['id']; ?></td>
-                        <td><?= $cliente['nome']; ?></td>
-                        <td><?= $cliente['email']; ?></td>
-                        <td><?= $cliente['telefone']; ?></td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao" >Editar</button>
-                        </td> 
-                        <td>
-                            <button class="btn btn-sm btn-warning" data-toggle="modal"  data-target="#modalExclucao"  >Excluir</button>
-                        </td>
+                        <th class="col-md-1">Id</th>
+                        <th class="col-md-3">Nome</th>
+                        <th class="col-md-3">email</th>
+                        <th class="col-md-3">telefone</th>
+                        <th class="col-md-1">Editar</th>
+                        <th class="col-md-1">Excluir</th>
                     </tr>
+                </thead>
+                <!--tr com dados do banco-->
+                <tbody>
+                    <?php
+                    foreach ($clientes as $cliente) {
+                        ?>
+                        <tr>
+                            <td><?= $cliente['id']; ?></td>
+                            <td><?= $cliente['nome']; ?></td>
+                            <td><?= $cliente['email']; ?></td>
+                            <td><?= $cliente['telefone']; ?></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao" >Editar</button>
+                            </td> 
+                            <td>
+                                <button class="btn btn-sm btn-warning" data-toggle="modal"  data-target="#modalExclucao"  >Excluir</button>
+                            </td>
+                        </tr>
                     <?php } ?>				
                 </tbody>
             </table>
         </div>
 
+        <div class="modal fade" id="modalCadastro">
+            <div class="modal-content modal-dialog modal-sm">
 
+                <form class="form"  method="POST">
 
-        <!--formulario de cadastro do produto-->
-        <div class="modal fade" id="modalCadastro" style="display: none">
-            <h4>Cadastrar novo Cliente</h4>
-            <form>
-                <label>Nome: </label>
-                <input type="text" id="nomeCadastro">
-                <label>Email: </label>
-                <input type="email" id="emailCadastro">
-                <label>Telefone: </label>
-                <input type="text" id="telefoneCadastro">
-                <input type="submit" id="cadastrarCliente">
-            </form>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cadastrar cliente</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nome: </label>
+                        <input type="text" id="nomeCadastro" class="form-control">
+                        <label>Email: </label>
+                        <input type="email" id="emailCadastro" class="form-control">
+                        <label>Telefone: </label>
+                        <input type="text" id="telefoneCadastro" class="form-control">
+                    </div>              
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" name="cadastrarCliente">Cadastrar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>  
+            </div>
         </div>
 
-        <!--formulario de edição de produto-->
-        <div class="modal fade" id="modalEdicao" style="display: none">
-            <h4>Editar Cliente</h4>
-            <form>
-                <label>Nome: </label>
-                <input type="text" id="nomeEdicao">
-                <label>Email: </label>
-                <input type="email" id="emailEdicao">
-                <label>Telefone: </label>
-                <input type="text" id="telefoneEdicao">
-                <input type="submit" id="editarCliente">
-            </form>		
+
+
+        <div class="modal fade" id="modalEdicao">
+            <div class="modal-content modal-dialog modal-sm">
+
+                <form class="form">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Editar produto</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nome: </label>
+                        <input type="text" id="nomeEdicao" class="form-control">
+                        <label>Email: </label>
+                        <input type="email" id="emailEdicao" class="form-control">
+                        <label>Telefone: </label>
+                        <input type="text" id="telefoneEdicao" class="form-control">
+                    </div>              
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" name="editarCliente">Editar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>  
+            </div>
         </div>
 
-        <div class="modal fade" id="modalExclucao" style="display: none">
-            <h4>excluir Cliente</h4>
-            <p>Realmente gostaria de excluir esse cliente?</p>
-            <button >Sim</button>
-            <button>Nao</button>
+        <div class="modal fade" id="modalExclucao">
+            <div class="modal-content modal-dialog modal-sm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Excluir cliente</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Realmente gostaria de excluir esse cliente?</p>
+                    <button class="confirm-delete btn btn-danger" data-dismiss="modal">Sim</button>
+                    <button class="btn btn-info" data-dismiss="modal">Nao</button>   
+                </div>               
+            </div>
         </div>
     </body>
-    </html>
+</html>
