@@ -14,7 +14,7 @@ $produtos = $produtoCrud->select("*");
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    
+
 </head>
 <body>	
 
@@ -56,7 +56,7 @@ $produtos = $produtoCrud->select("*");
                         <td><?= $produto['id']; ?></td>
                         <td><?= $produto['nome']; ?></td>                        
                         <td><?= $produto['descricao']; ?></td>
-                        <td>R$<?= number_format($produto['preco'], 2, ',',''); ?>  </td>
+                        <td>R$<?= number_format($produto['preco'], 2, ',', ''); ?>  </td>
                         <td>
                             <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao">Editar</button>
                         </td> 
@@ -64,7 +64,8 @@ $produtos = $produtoCrud->select("*");
                             <button class="btn btn-sm btn-warning" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
                         </td>
                     </tr>
-                    <?php } ?>				
+                    <?php }
+                    ?>				
                 </tbody>
             </table>
         </div>
@@ -84,25 +85,79 @@ $produtos = $produtoCrud->select("*");
             </form>
         </div>
 
-        <!--formulario de edição de produto-->
-        <div class="modal fade" id="modalEdicao" style="display: none">
-            <form>
-                <label>Nome:</label>
-                <input type="text" name="nomeEdicao">
-                <label>Descrição:</label>
-                <input type="text" name="descricaoEdicao">
-                <label>Preço:</label>
-                <input type="number" name="precoEdicao" step="0.1">
-                <input type="submit" name="edicaoProduto">
-            </form>		
+
+
+        <div class="modal fade" id="modalEdicao">
+            <div class="modal-content modal-dialog modal-sm">
+
+                <form class="form">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Editar produto</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Nome:</label>
+                        <input type="text" name="nomeEdicao" class="form-control">
+                        <label>Descrição:</label>
+                        <input type="text" name="descricaoEdicao" class="form-control">
+                        <label>Preço:</label>
+                        <input type="number" name="precoEdicao" step="0.1" class="form-control">
+                    </div>              
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" name="edicaoProduto">Editar</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+                    </div>
+                </form>  
+            </div>
         </div>
 
-        <div class="modal fade" id="modalExclucao" style="display: none">
-            <p>Realmente gostaria de excluir esse item?</p>
-            <button>Sim</button>
-            <button>Não</button>
+
+        <div class="modal fade" id="modalExclucao">
+            <div class="modal-content modal-dialog modal-sm">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Realmente gostaria de excluir esse item?</p>
+                    <button class="confirm-delete" data-dismiss="modal">Sim</button>
+                    <button data-dismiss="modal">Nao</button>   
+                </div>               
+            </div>
         </div>
 
+
+
+        <script type="text/javascript">
+            var options;
+            $(document).ready(function () {
+                $('.delete-produto').click(function () {
+                    console.log(this.id);
+                    options = {
+                        type: "post",
+                        data: {idProd: $(this).attr('id')},
+                        url: "produto.php"
+                    }
+                });
+            });
+
+            $(document).ready(function () {
+                $('.confirm-delete').click(function () {
+                    $.ajax(options);
+                })
+            });
+
+        </script>
+
+        <?php
+        if (isset($_POST['idProd'])) {
+            if ($produtoCrud->delete("id = " . $_POST['idProd'])) {
+                echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=produto.php'>";
+            }
+        }
+        ?>
 
     </body>
     </html>

@@ -13,7 +13,7 @@
 </head>
 <body>   
 	<?php include "nav.php" ?>
-	<h1>Bem vindo ao gerenciado de pedido</h1>
+	<h1>Bem vindo ao gerenciador de pedido</h1>
 
 </body>
 </html>
