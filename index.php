@@ -2,12 +2,14 @@
 
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title></title>
+    <meta charset="UTF-8">
+    <title>Controle de pedidos</title>
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-<body>
-	<button id="telaProduto" onclick="javascript: location.href='produto.php'">Produtos</button>
-        <button id="telaCliente" onclick="javascript: location.href='cliente.php'">Clientes</button>
-        <button id="telaPedidos" onclick="javascript: location.href='pedido.php'">Pedidos</button>
+<body>   
+    <?php include "nav.php" ?>
+
 </body>
 </html>

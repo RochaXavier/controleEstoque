@@ -7,14 +7,15 @@ $produtos = $produtoCrud->select("*");
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Produtos</title>
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos</title>
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    </head>
     <body>	
+
+        <?php include "nav.php" ?>
+
         <?php
         if (isset($_POST['nomeInsercao']) && isset($_POST['descricaoInsercao']) && isset($_POST['precoInsercao'])) {
             $valores = [];
@@ -59,45 +60,45 @@ $produtos = $produtoCrud->select("*");
                                 <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
                             </td>
                         </tr>
-                    <?php } ?>				
-                </tbody>
-            </table>
-        </div>
+                        <?php } ?>				
+                    </tbody>
+                </table>
+            </div>
 
 
 
-        <!--formulario de cadastro do produto-->
-        <div class="modal fade" id="modalCadastro" style="display: none">
-            <form method="POST">
-                <label>Nome:</label>
-                <input type="text" name="nomeInsercao">
-                <label>Descrição:</label>
-                <input type="text" name="descricaoInsercao">
-                <label>Preço: </label>
-                <input type="number" name="precoInsercao" step="0.1">                            
-                <input type="submit" name="cadastrarProduto">
-            </form>
-        </div>
+            <!--formulario de cadastro do produto-->
+            <div class="modal fade" id="modalCadastro" style="display: none">
+                <form method="POST">
+                    <label>Nome:</label>
+                    <input type="text" name="nomeInsercao">
+                    <label>Descrição:</label>
+                    <input type="text" name="descricaoInsercao">
+                    <label>Preço: </label>
+                    <input type="number" name="precoInsercao" step="0.1">                            
+                    <input type="submit" name="cadastrarProduto">
+                </form>
+            </div>
 
-        <!--formulario de edição de produto-->
-        <div class="modal fade" id="modalEdicao" style="display: none">
-            <form>
-                <label>Nome:</label>
-                <input type="text" name="nomeEdicao">
-                <label>Descrição:</label>
-                <input type="text" name="descricaoEdicao">
-                <label>Preço:</label>
-                <input type="number" name="precoEdicao" step="0.1">
-                <input type="submit" name="edicaoProduto">
-            </form>		
-        </div>
+            <!--formulario de edição de produto-->
+            <div class="modal fade" id="modalEdicao" style="display: none">
+                <form>
+                    <label>Nome:</label>
+                    <input type="text" name="nomeEdicao">
+                    <label>Descrição:</label>
+                    <input type="text" name="descricaoEdicao">
+                    <label>Preço:</label>
+                    <input type="number" name="precoEdicao" step="0.1">
+                    <input type="submit" name="edicaoProduto">
+                </form>		
+            </div>
 
-        <div class="modal fade" id="modalExclucao" style="display: none">
-            <p>Realmente gostaria de excluir esse item?</p>
-            <button>Sim</button>
-            <button>Nao</button>
-        </div>
+            <div class="modal fade" id="modalExclucao" style="display: none">
+                <p>Realmente gostaria de excluir esse item?</p>
+                <button>Sim</button>
+                <button>Nao</button>
+            </div>
 
 
-    </body>
-</html>
+        </body>
+        </html>

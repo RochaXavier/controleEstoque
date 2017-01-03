@@ -6,15 +6,13 @@ $clienteCrud = new crud("cliente");
 $clientes = $clienteCrud->select("*");
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Clientes</title>
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    </head>
     <body>
-
+        <?php include "nav.php" ?>
 
         <h1>Lista de clientes</h1>
         <!--tabela de produtos cadatrados-->
@@ -48,49 +46,49 @@ $clientes = $clienteCrud->select("*");
                                 <button class="btn btn-sm btn-default" data-toggle="modal"  data-target="#modalExclucao"  >Excluir</button>
                             </td>
                         </tr>
-                    <?php } ?>				
-                </tbody>
-            </table>
-        </div>
+                        <?php } ?>				
+                    </tbody>
+                </table>
+            </div>
 
 
 
-        <!--formulario de cadastro do produto-->
-        <div class="modal fade" id="modalCadastro" style="display: none">
-            <h4>Cadastrar novo Cliente</h4>
-            <form>
-                <label>Nome: </label>
-                <input type="text" id="nomeCadastro">
-                <label>Email: </label>
-                <input type="email" id="emailCadastro">
-                <label>Telefone: </label>
-                <input type="text" id="telefoneCadastro">
-                <input type="submit" id="cadastrarCliente">
-            </form>
-        </div>
+            <!--formulario de cadastro do produto-->
+            <div class="modal fade" id="modalCadastro" style="display: none">
+                <h4>Cadastrar novo Cliente</h4>
+                <form>
+                    <label>Nome: </label>
+                    <input type="text" id="nomeCadastro">
+                    <label>Email: </label>
+                    <input type="email" id="emailCadastro">
+                    <label>Telefone: </label>
+                    <input type="text" id="telefoneCadastro">
+                    <input type="submit" id="cadastrarCliente">
+                </form>
+            </div>
 
-        <!--formulario de edição de produto-->
-        <div class="modal fade" id="modalEdicao" style="display: none">
-            <h4>Editar Cliente</h4>
-            <form>
-                <label>Nome: </label>
-                <input type="text" id="nomeEdicao">
-                <label>Email: </label>
-                <input type="email" id="emailEdicao">
-                <label>Telefone: </label>
-                <input type="text" id="telefoneEdicao">
-                <input type="submit" id="editarCliente">
-            </form>		
-        </div>
+            <!--formulario de edição de produto-->
+            <div class="modal fade" id="modalEdicao" style="display: none">
+                <h4>Editar Cliente</h4>
+                <form>
+                    <label>Nome: </label>
+                    <input type="text" id="nomeEdicao">
+                    <label>Email: </label>
+                    <input type="email" id="emailEdicao">
+                    <label>Telefone: </label>
+                    <input type="text" id="telefoneEdicao">
+                    <input type="submit" id="editarCliente">
+                </form>		
+            </div>
 
-        <div class="modal fade" id="modalExclucao" style="display: none">
-            <h4>excluir Cliente</h4>
-            <p>Realmente gostaria de excluir esse cliente?</p>
-            <button >Sim</button>
-            <button>Nao</button>
-        </div>
+            <div class="modal fade" id="modalExclucao" style="display: none">
+                <h4>excluir Cliente</h4>
+                <p>Realmente gostaria de excluir esse cliente?</p>
+                <button >Sim</button>
+                <button>Nao</button>
+            </div>
 
-        <script src="js/cliente.js" type="text/javascript"></script>
+            <script src="js/cliente.js" type="text/javascript"></script>
 
-    </body>
-</html>
+        </body>
+        </html>
