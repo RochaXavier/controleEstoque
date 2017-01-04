@@ -21,9 +21,10 @@ $clientes = $clienteCrud->select("id,nome");
     <body>
 
         <script type="text/javascript">
-            var idEdicao;
-            function prepararEdicao(id, produto, cliente) {
-                idEdicao = id;                
+            var id;
+            function prepararEdicao(idPedido, produto, cliente) {
+                id = idPedido;  
+                console.log(id);
                 $("#editarPedido").empty()
                 texto = "Você está editando o pedido do cliente " + cliente + " que pediu o " + produto;
                 $("#editarPedido").prepend(texto);
@@ -130,7 +131,7 @@ $clientes = $clienteCrud->select("id,nome");
                     <div class="modal-body">
                         <p id="editarPedido"></p>
                         <label>Cliente: </label>
-                        <select  name="id_cliente" class="form-control">
+                        <select  id="id_clienteEdit" class="form-control">
                             <option value="">----Selecione----</option>
                             <?php foreach ($clientes as $cliente) {
                                 ?>
@@ -142,7 +143,7 @@ $clientes = $clienteCrud->select("id,nome");
 
                         </select>
                         <label>Produto: </label>                       
-                        <select  name="id_produto" class="form-control">
+                        <select  id="id_produtoEdit" class="form-control">
                             <option value="">----Selecione----</option>
                             <?php foreach ($produtos as $produto) {
                                 ?>
@@ -155,7 +156,7 @@ $clientes = $clienteCrud->select("id,nome");
                     </div>              
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" id="editarPedido">Editar</button>
+                        <button type="submit" class="btn btn-success confirm-edit-pedido" id="editarPedido">Editar</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>  
@@ -177,11 +178,8 @@ $clientes = $clienteCrud->select("id,nome");
         </div>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                var id;
-                $('#editarPedido').click(function () {
-                       console.log("editar dados");
-                });
+            $(document).ready(function () { 
+                
                 $('.delete-pedido').click(function () {
                     id = $(this).attr('id');
                     console.log(id);
@@ -199,6 +197,22 @@ $clientes = $clienteCrud->select("id,nome");
                         }
                     });
                 });
+                
+                $('.confirm-edit-pedido').click(function () {
+                   console.log($('#id_clienteEdit'));
+                    $.ajax({
+                        type: "post",
+                        data: {idPedi: id,
+                            idClie: $('#id_clienteEdit').val(),
+                            idProd: $('#id_produtoEdit').val()},
+                        url: "alterarPedido.php",
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                    return false;
+                });
+                
             });
         </script>
     </body>

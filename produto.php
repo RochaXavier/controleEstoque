@@ -44,7 +44,7 @@ $produtos = $produtoCrud->select("*");
                             <td><?= $produto['descricao']; ?></td>
                             <td>R$<?= number_format($produto['preco'], 2, ',', ''); ?>  </td>
                             <td>
-                                <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao">Editar</button>
+                                <button class="btn btn-sm btn-primary edit-produto" id='<?= $produto['id']; ?>' data-toggle="modal"  data-target="#modalEdicao">Editar</button>
                             </td> 
                             <td>
                                 <button class="btn btn-sm btn-warning delete-produto" id='<?= $produto['id']; ?>' data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
@@ -88,7 +88,7 @@ $produtos = $produtoCrud->select("*");
         <div class="modal fade" id="modalEdicao">
             <div class="modal-content modal-dialog modal-sm">
 
-                <form class="form">
+                <form class="form" >
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -104,7 +104,7 @@ $produtos = $produtoCrud->select("*");
                     </div>              
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" name="edicaoProduto">Editar</button>
+                        <button type="submit" class="btn btn-success confirm-edit-produto" name="edicaoProduto">Editar</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>  
