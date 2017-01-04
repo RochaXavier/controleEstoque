@@ -45,7 +45,7 @@ $clientes = $clienteCrud->select("*");
                             <td><?= $cliente['email']; ?></td>
                             <td><?= $cliente['telefone']; ?></td>
                             <td>
-                                <button class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#modalEdicao" >Editar</button>
+                                <button class="btn btn-sm btn-primary bt-editar" id='<?= $cliente['id']; ?>' data-toggle="modal"  data-target="#modalEdicao" >Editar</button>
                             </td> 
                             <td>
                                 <button class="btn btn-sm btn-warning delete-cliente" id='<?= $cliente['id']; ?>' data-toggle="modal"  data-target="#modalExclucao">Excluir</button>
@@ -103,7 +103,7 @@ $clientes = $clienteCrud->select("*");
                     </div>              
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" name="editarCliente">Editar</button>
+                        <button type="submit" class="btn btn-success bt-confirm-editar" name="editarCliente">Editar</button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
                     </div>
                 </form>  
@@ -143,7 +143,7 @@ $clientes = $clienteCrud->select("*");
                 
                 $('.bt-editar').click(function () {
                     id = $(this).attr('id');
-
+                    console.log(id);
                     var lista = '<?php echo json_encode($clientes) ?>';
                     var lista_json = JSON.parse(lista);
 
@@ -164,7 +164,7 @@ $clientes = $clienteCrud->select("*");
                              telEdic: $('#telefoneEdicao').val()},
                             url: "alterarCliente.php",
                             success: function () {
-                                location.reload();
+                               location.reload();
                             }
                         });
                         return false;
