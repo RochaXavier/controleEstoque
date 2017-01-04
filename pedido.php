@@ -23,8 +23,10 @@ $clientes = $clienteCrud->select("id,nome");
         <script type="text/javascript">
             var idEdicao;
             function prepararEdicao(id, produto, cliente) {
-                idEdicao = id;
-                $("#editarPedido").prepend("Você está editando o pedido do cliente " + cliente + " que pediu o " + produto);
+                idEdicao = id;                
+                $("#editarPedido").empty()
+                texto = "Você está editando o pedido do cliente " + cliente + " que pediu o " + produto;
+                $("#editarPedido").prepend(texto);
             }
         </script>
 
