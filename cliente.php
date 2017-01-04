@@ -140,6 +140,36 @@ $clientes = $clienteCrud->select("*");
                         });
                     });
                 });
+                
+                $('.bt-editar').click(function () {
+                    id = $(this).attr('id');
+
+                    var lista = '<?php echo json_encode($clientes) ?>';
+                    var lista_json = JSON.parse(lista);
+
+                    for (var i = 0; i < lista_json.length; i++) {
+                        if (lista_json[i].id === id) {
+                            $('#nomeEdicao').val(lista_json[i].nome);
+                            $('#emailEdicao').val(lista_json[i].email);
+                            $('#telefoneEdicao').val(lista_json[i].telefone);
+                            break;
+                        }
+                    }                    
+                    $('.bt-confirm-editar').click(function () {
+                        $.ajax({
+                            type: "post",
+                            data: {idClie: id,
+                             nomeEdic: $('#nomeEdicao').val(),
+                             emailEdic: $('#emailEdicao').val(),
+                             telEdic: $('#telefoneEdicao').val()},
+                            url: "alterarCliente.php",
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                        return false;
+                    });
+                });
             });
         </script>
     </body>
